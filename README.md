@@ -1,5 +1,5 @@
 # bitm-classworks
 bitm seip asp.net class works
 
-# author - tirzo ahsan sami
+# author - turzo ahsan sami
 # seid - 267725
