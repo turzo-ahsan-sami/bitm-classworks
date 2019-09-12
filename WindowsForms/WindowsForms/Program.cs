@@ -16,8 +16,9 @@ namespace WindowsForms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Home());
-            Application.Run(new DataTypeUI());
+            // Application.Run(new Home());
+            // Application.Run(new DataTypeUI());
+            Application.Run(new CoffeeShop());
         }
     }
 }

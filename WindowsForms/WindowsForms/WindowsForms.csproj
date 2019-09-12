@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CoffeeShop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CoffeeShop.Designer.cs">
+      <DependentUpon>CoffeeShop.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataTypeUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CoffeeShop.resx">
+      <DependentUpon>CoffeeShop.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DataTypeUI.resx">
       <DependentUpon>DataTypeUI.cs</DependentUpon>
     </EmbeddedResource>
