@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace WindowsForms
 {
-    public partial class CoffeeShop : Form
+    public partial class CoffeeOrderForm : Form
     {
         private string customerName;
         private string contact;
@@ -20,28 +20,34 @@ namespace WindowsForms
         private int orderQuantity;
         private int totalValue;
 
-        public CoffeeShop()
+        public CoffeeOrderForm()
         {
             InitializeComponent();
         }
 
-        private void storeCustomerName(object sender, KeyEventArgs e)
+        private void InputCustomerName(object sender, EventArgs e)
         {
             customerName = customerNameTextbox.Text;
         }
+               
 
-        private void storeContact(object sender, KeyEventArgs e)
+        private void InputContact(object sender, EventArgs e)
         {
             contact = contactTextbox.Text;
         }
 
-        private void storeAddress(object sender, KeyEventArgs e)
+        private void StoreContact(object sender, KeyEventArgs e)
+        {
+
+        }
+               
+        private void InputAddress(object sender, EventArgs e)
         {
             address = addressTextbox.Text;
         }
-
+          
     
-        private void orderCombo_SelectedIndexChanged(object sender, EventArgs e)
+        private void OrderCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             orderName = orderCombo.Text;
             if (orderName == "black")
@@ -59,33 +65,40 @@ namespace WindowsForms
         }
 
 
-        private void storeQuantity(object sender, KeyEventArgs e)
+        private void InputQuantity(object sender, KeyPressEventArgs e)
         {
-            if (quantityTextBox.Text == "")
-            {
-                quantityTextBox.Text = "0";
-            }
-
-            orderQuantity = Convert.ToInt32(quantityTextBox.Text);
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && (e.KeyChar != '.');   
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (orderQuantity == 0)
-            {
-                MessageBox.Show("Please enter order quantity");
-                return;
-            }
+            CalculateTotalPrice();
+            DisplayOrderDetails();
+        }
+
+        private void CalculateTotalPrice()
+        {
             if (orderCombo.Text == "")
             {
                 MessageBox.Show("Please selecft coffee type");
                 return;
             }
+
+            string quantityTextBoxValue = quantityTextBox.Text;
+
+            if (quantityTextBoxValue == "") orderQuantity = 0;
+            else orderQuantity = int.Parse(quantityTextBoxValue);
+
+            if (orderQuantity == 0)
+            {
+                MessageBox.Show("Please enter order quantity");
+                return;
+            }
+
             totalValue = orderQuantity * orderValue;
-            displayOutput();
         }
 
-        private void displayOutput()
+        private void DisplayOrderDetails()
         {
             orderDetailsRichTextbox.Text =
                 "Name: " + customerName + "\n"
@@ -95,5 +108,7 @@ namespace WindowsForms
                 + "Order: " + orderCombo.Text + "\n"
                 + "Total Value: " + totalValue + "\n";
         }
+
+        
     }
 }

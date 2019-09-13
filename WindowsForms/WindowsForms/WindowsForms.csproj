@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoffeeShop.cs">
+    <Compile Include="CoffeeOrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CoffeeShop.Designer.cs">
-      <DependentUpon>CoffeeShop.cs</DependentUpon>
+    <Compile Include="CoffeeOrderForm.Designer.cs">
+      <DependentUpon>CoffeeOrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataTypeUI.cs">
       <SubType>Form</SubType>
@@ -66,8 +66,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CoffeeShop.resx">
-      <DependentUpon>CoffeeShop.cs</DependentUpon>
+    <EmbeddedResource Include="CoffeeOrderForm.resx">
+      <DependentUpon>CoffeeOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DataTypeUI.resx">
       <DependentUpon>DataTypeUI.cs</DependentUpon>
