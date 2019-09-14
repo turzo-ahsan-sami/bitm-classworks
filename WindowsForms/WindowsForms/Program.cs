@@ -18,7 +18,8 @@ namespace WindowsForms
             Application.SetCompatibleTextRenderingDefault(false);
             // Application.Run(new Home());
             // Application.Run(new DataTypeUI());
-            Application.Run(new CoffeeOrderForm());
+            // Application.Run(new CoffeeOrderForm());
+            Application.Run(new BasicCalculator());
         }
     }
 }

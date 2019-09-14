@@ -58,6 +58,12 @@
     <Compile Include="DataTypeUI.Designer.cs">
       <DependentUpon>DataTypeUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="BasicCalculator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BasicCalculator.Designer.cs">
+      <DependentUpon>BasicCalculator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +77,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataTypeUI.resx">
       <DependentUpon>DataTypeUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BasicCalculator.resx">
+      <DependentUpon>BasicCalculator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
