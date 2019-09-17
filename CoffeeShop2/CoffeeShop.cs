@@ -16,9 +16,9 @@ namespace CoffeeShop2
         List<OrderDetails> customersOrders = new List<OrderDetails>();
 
         // using array of objects
-        const int arraySize = 10;
-        int index = 0;
-        OrderDetails[] ordersArray = new OrderDetails[arraySize];
+        //const int arraySize = 10;
+        //int index = 0;
+        //OrderDetails[] ordersArray = new OrderDetails[arraySize];
 
         string customerName;
         string customerContact;
@@ -73,7 +73,7 @@ namespace CoffeeShop2
         {
             string textBoxValue = "";
 
-            if (checkTextisNumber(quantityTextBox.Text)) textBoxValue = quantityTextBox.Text;
+            if (CustomLibrary.CheckTextisNumber(quantityTextBox.Text)) textBoxValue = quantityTextBox.Text;
             else quantityTextBox.Text = textBoxValue;
 
             if (textBoxValue == "") customerOrderQuantity = 0;
@@ -102,29 +102,19 @@ namespace CoffeeShop2
             {
 
 
-                // List
-                /*
+                // List                
                 customersOrders.Add(new OrderDetails(customerName, customerContact, customerOrder, customerOrderPrice, customerOrderQuantity, customerTotalPrice));
-                customersOrders.Add(new OrderDetails {
-                    name = customerName,
-                    contact = customerContact,
-                    orderType = customerOrder,
-                    itemPrice = customerOrderPrice,
-                    itemQuantity = customerOrderQuantity,
-                    totalPrice = customerTotalPrice
-                });
-                */
-
+                
                 // Array
-                if (index < arraySize)
-                {
-                    ordersArray[index] = new OrderDetails(customerName, customerContact, customerOrder, customerOrderPrice, customerOrderQuantity, customerTotalPrice);
-                    index++;
-                }
-                else
-                {
-                    MessageBox.Show("Array is full");
-                }
+                //if (index < arraySize)
+                //{
+                //    ordersArray[index] = new OrderDetails(customerName, customerContact, customerOrder, customerOrderPrice, customerOrderQuantity, customerTotalPrice);
+                //    index++;
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Array is full");
+                //}
 
                 DisplayOutput();
             }
@@ -135,7 +125,6 @@ namespace CoffeeShop2
             string output = "Coffee Order Details \n\n";           
 
             // List
-            /*
             int orderCounter = 0;
             foreach (OrderDetails item in customersOrders)
             {
@@ -147,19 +136,19 @@ namespace CoffeeShop2
                             + "Quantity : " + item.itemQuantity + "\n"
                             + "Total Price : " + item.totalPrice + "\n\n";
             }
-            */
+            
 
             // Array
-            for (int i = 0; i < index; i++)
-            {
-                output += "Order : " + (i+1) + "\n"
-                            + "Customer : " + ordersArray[i].name + "\n"
-                            + "Contact : " + ordersArray[i].contact + "\n"
-                            + "Order : " + ordersArray[i].orderType + "\n"
-                            + "Price : " + ordersArray[i].itemPrice + "\n"
-                            + "Quantity : " + ordersArray[i].itemQuantity + "\n"
-                            + "Total Price : " + ordersArray[i].totalPrice + "\n\n";
-            }
+            //for (int i = 0; i < index; i++)
+            //{
+            //    output += "Order : " + (i+1) + "\n"
+            //                + "Customer : " + ordersArray[i].name + "\n"
+            //                + "Contact : " + ordersArray[i].contact + "\n"
+            //                + "Order : " + ordersArray[i].orderType + "\n"
+            //                + "Price : " + ordersArray[i].itemPrice + "\n"
+            //                + "Quantity : " + ordersArray[i].itemQuantity + "\n"
+            //                + "Total Price : " + ordersArray[i].totalPrice + "\n\n";
+            //}
 
             outputRichTextBox.Text = output;
 

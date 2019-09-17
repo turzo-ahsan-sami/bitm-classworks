@@ -16,7 +16,8 @@ namespace ArrayUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ArrayUI());
+            //Application.Run(new ArrayUI());
+            Application.Run(new UserUI());
         }
     }
 }
