@@ -12,7 +12,13 @@ namespace CoffeeShop2
 {
     public partial class CoffeeShop : Form
     {
+        // using list
         List<OrderDetails> customersOrders = new List<OrderDetails>();
+
+        // using array of objects
+        const int arraySize = 10;
+        int index = 0;
+        OrderDetails[] ordersArray = new OrderDetails[arraySize];
 
         string customerName;
         string customerContact;
@@ -24,6 +30,7 @@ namespace CoffeeShop2
         public CoffeeShop()
         {
             InitializeComponent();
+            Reset();
         }
 
         private void Reset()
@@ -54,7 +61,8 @@ namespace CoffeeShop2
         private void InputOrderType(object sender, EventArgs e)
         {
             customerOrder = orderComboBox.Text.ToLower();
-            if (customerOrder == "black") customerOrderPrice = 80;
+            if (customerOrder == "") customerOrderPrice = 0;
+            else if (customerOrder == "black") customerOrderPrice = 80;
             else if (customerOrder == "hot") customerOrderPrice = 90;
             else if (customerOrder == "regular") customerOrderPrice = 100;
             else if (customerOrder == "cold") customerOrderPrice = 120;
@@ -75,27 +83,59 @@ namespace CoffeeShop2
         }
 
         private void CalculateTotalPrice()
-        {
-            customerTotalPrice = customerOrderQuantity * customerOrderPrice;
+        {            
+           customerTotalPrice = customerOrderQuantity * customerOrderPrice;
         }
 
         private void AddCustomerData(object sender, EventArgs e)
         {
-            customersOrders.Add(new OrderDetails {
-                name = customerName,
-                contact = customerContact,
-                orderType = customerOrder,
-                itemPrice = customerOrderPrice,
-                itemQuantity = customerOrderQuantity,
-                totalPrice = customerTotalPrice
-            });
 
-            DisplayOutput();
+            string message = "";
+            if (customerName == "") message = "Please input name.";
+            if (customerContact == "") message = "Please input contact.";
+            if (customerOrderPrice == 0) message = "Please select an item.";
+            if (customerOrderQuantity == 0) message = "Please input order quantity.";
+
+            if (message != "") MessageBox.Show(message);
+
+            else
+            {
+
+
+                // List
+                /*
+                customersOrders.Add(new OrderDetails(customerName, customerContact, customerOrder, customerOrderPrice, customerOrderQuantity, customerTotalPrice));
+                customersOrders.Add(new OrderDetails {
+                    name = customerName,
+                    contact = customerContact,
+                    orderType = customerOrder,
+                    itemPrice = customerOrderPrice,
+                    itemQuantity = customerOrderQuantity,
+                    totalPrice = customerTotalPrice
+                });
+                */
+
+                // Array
+                if (index < arraySize)
+                {
+                    ordersArray[index] = new OrderDetails(customerName, customerContact, customerOrder, customerOrderPrice, customerOrderQuantity, customerTotalPrice);
+                    index++;
+                }
+                else
+                {
+                    MessageBox.Show("Array is full");
+                }
+
+                DisplayOutput();
+            }
         }
 
         private void DisplayOutput()
         {
             string output = "Coffee Order Details \n\n";           
+
+            // List
+            /*
             int orderCounter = 0;
             foreach (OrderDetails item in customersOrders)
             {
@@ -106,6 +146,19 @@ namespace CoffeeShop2
                             + "Price : " + item.itemPrice + "\n"
                             + "Quantity : " + item.itemQuantity + "\n"
                             + "Total Price : " + item.totalPrice + "\n\n";
+            }
+            */
+
+            // Array
+            for (int i = 0; i < index; i++)
+            {
+                output += "Order : " + (i+1) + "\n"
+                            + "Customer : " + ordersArray[i].name + "\n"
+                            + "Contact : " + ordersArray[i].contact + "\n"
+                            + "Order : " + ordersArray[i].orderType + "\n"
+                            + "Price : " + ordersArray[i].itemPrice + "\n"
+                            + "Quantity : " + ordersArray[i].itemQuantity + "\n"
+                            + "Total Price : " + ordersArray[i].totalPrice + "\n\n";
             }
 
             outputRichTextBox.Text = output;
@@ -156,7 +209,16 @@ namespace CoffeeShop2
         public int itemPrice { get; set; }
         public int itemQuantity { get; set; }
         public int totalPrice { get; set; }
-    
+
+        public OrderDetails(string name, string contact, string orderType, int itemPrice, int itemQuantity, int totalPrice)
+        {
+            this.name = name;
+            this.contact = contact;
+            this.orderType = orderType;
+            this.itemPrice = itemPrice;
+            this.itemQuantity = itemQuantity;
+            this.totalPrice = totalPrice;
+        }
     }
 
     
