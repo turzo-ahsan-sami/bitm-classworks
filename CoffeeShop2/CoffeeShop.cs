@@ -60,12 +60,8 @@ namespace CoffeeShop2
 
         private void InputOrderType(object sender, EventArgs e)
         {
-            customerOrder = orderComboBox.Text.ToLower();
-            if (customerOrder == "") customerOrderPrice = 0;
-            else if (customerOrder == "black") customerOrderPrice = 80;
-            else if (customerOrder == "hot") customerOrderPrice = 90;
-            else if (customerOrder == "regular") customerOrderPrice = 100;
-            else if (customerOrder == "cold") customerOrderPrice = 120;
+            customerOrder = orderComboBox.Text;
+            customerOrderPrice = MenuItemPriceList.SetItemPrice(customerOrder);
             CalculateTotalPrice();
         }
 
@@ -76,35 +72,41 @@ namespace CoffeeShop2
             if (CustomLibrary.CheckTextisNumber(quantityTextBox.Text)) textBoxValue = quantityTextBox.Text;
             else quantityTextBox.Text = textBoxValue;
 
-            if (textBoxValue == "") customerOrderQuantity = 0;
-            else customerOrderQuantity = int.Parse(textBoxValue);
-
+            customerOrderQuantity = (textBoxValue == "") ? 0 : int.Parse(textBoxValue);
+           
             CalculateTotalPrice();
         }
 
         private void CalculateTotalPrice()
-        {            
-           customerTotalPrice = customerOrderQuantity * customerOrderPrice;
+        {
+            customerTotalPrice = customerOrderQuantity * customerOrderPrice;
         }
 
         private void AddCustomerData(object sender, EventArgs e)
         {
-
+            outputRichTextBox.Text = "";
             string message = "";
+
             if (customerName == "") message = "Please input name.";
             if (customerContact == "") message = "Please input contact.";
             if (customerOrderPrice == 0) message = "Please select an item.";
             if (customerOrderQuantity == 0) message = "Please input order quantity.";
-
-            if (message != "") MessageBox.Show(message);
-
+            if (HasDuplicateContacts(customerContact)) message = "Contact already exists. Please provide a different contact.";               
+            
+            
+            if (message != "")
+            {
+                MessageBox.Show(message);
+                return;
+            }
             else
             {
-
-
                 // List                
-                customersOrders.Add(new OrderDetails(customerName, customerContact, customerOrder, customerOrderPrice, customerOrderQuantity, customerTotalPrice));
-                
+                OrderDetails NewCustomer = new OrderDetails(customerName, customerContact, customerOrder, customerOrderPrice, customerOrderQuantity, customerTotalPrice);
+                customersOrders.Add(NewCustomer);
+                outputRichTextBox.Text = NewCustomer.ShowOrderDetails();
+                Reset();
+
                 // Array
                 //if (index < arraySize)
                 //{
@@ -116,78 +118,77 @@ namespace CoffeeShop2
                 //    MessageBox.Show("Array is full");
                 //}
 
-                DisplayOutput();
-            }
-        }
+                // DisplayOutput();
 
-        private void DisplayOutput()
-        {
-            string output = "Coffee Order Details \n\n";           
-
-            // List
-            int orderCounter = 0;
-            foreach (OrderDetails item in customersOrders)
-            {
-                output += "Order : " + ++orderCounter + "\n"
-                            + "Customer : " + item.name + "\n"
-                            + "Contact : " + item.contact + "\n"
-                            + "Order : " + item.orderType + "\n"
-                            + "Price : " + item.itemPrice + "\n"
-                            + "Quantity : " + item.itemQuantity + "\n"
-                            + "Total Price : " + item.totalPrice + "\n\n";
             }
+
             
 
-            // Array
-            //for (int i = 0; i < index; i++)
-            //{
-            //    output += "Order : " + (i+1) + "\n"
-            //                + "Customer : " + ordersArray[i].name + "\n"
-            //                + "Contact : " + ordersArray[i].contact + "\n"
-            //                + "Order : " + ordersArray[i].orderType + "\n"
-            //                + "Price : " + ordersArray[i].itemPrice + "\n"
-            //                + "Quantity : " + ordersArray[i].itemQuantity + "\n"
-            //                + "Total Price : " + ordersArray[i].totalPrice + "\n\n";
-            //}
-
-            outputRichTextBox.Text = output;
-
-            Reset();
         }
 
-        private static bool checkTextisNumber(string numberVal)
+        private void DisplayOutput(object sender, EventArgs e)
         {
-            bool numResult;
-            try
+            outputRichTextBox.Text = "";
+            string output = "Coffee Order Details \n\n";
+
+            if (customersOrders.Count == 0)
             {
-                if (numberVal.Equals("."))
+                MessageBox.Show("Please add order.");
+                return; 
+            }
+            else
+            {
+                // List
+                foreach (OrderDetails item in customersOrders)
                 {
-                    numResult = true;
-                }
-                else if (numberVal.Equals(""))
-                {
-                    numResult = true;
-                }
-                else
-                {
-                    bool canConvert = decimal.TryParse(numberVal, out decimal number3);
-                    if (canConvert == true)
-                    {
-                        numResult = true;
-                    }
-                    else
-                    {
-                        numResult = false;
-                    }
+                    output += "Order : " + (customersOrders.IndexOf(item) + 1) + "\n"
+                                + "Customer : " + item.name + "\n"
+                                + "Contact : " + item.contact + "\n"
+                                + "Order : " + item.orderType + "\n"
+                                + "Price : " + item.itemPrice + "\n"
+                                + "Quantity : " + item.itemQuantity + "\n"
+                                + "Total Price : " + item.totalPrice + "\n\n";
                 }
 
+                // Array
+                //for (int i = 0; i < index; i++)
+                //{
+                //    output += "Order : " + (i+1) + "\n"
+                //                + "Customer : " + ordersArray[i].name + "\n"
+                //                + "Contact : " + ordersArray[i].contact + "\n"
+                //                + "Order : " + ordersArray[i].orderType + "\n"
+                //                + "Price : " + ordersArray[i].itemPrice + "\n"
+                //                + "Quantity : " + ordersArray[i].itemQuantity + "\n"
+                //                + "Total Price : " + ordersArray[i].totalPrice + "\n\n";
+                //}
+
+                outputRichTextBox.Text = output;
+
+                Reset();
             }
-            catch (Exception)
-            {
-                numResult = false;
-            }
-            return numResult;
         }
+
+
+
+        private bool HasDuplicateContacts(string contact)
+        {
+            if (customersOrders.Count == 0 || contact == "") return false;
+
+            foreach(OrderDetails item in customersOrders)
+            {
+                if(item.contact == contact)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+           
+        }
+
+
+
+
     }
 
     class OrderDetails
@@ -208,7 +209,48 @@ namespace CoffeeShop2
             this.itemQuantity = itemQuantity;
             this.totalPrice = totalPrice;
         }
+
+        public string ShowOrderDetails()
+        {
+            string output = "Customer Order \n\n";
+            
+            output += "Customer : " + this.name + "\n"
+                        + "Contact : " + this.contact + "\n"
+                        + "Order : " + this.orderType + "\n"
+                        + "Price : " + this.itemPrice + "\n"
+                        + "Quantity : " + this.itemQuantity + "\n"
+                        + "Total Price : " + this.totalPrice + "\n\n";
+
+            return output;
+        }
     }
 
-    
+
+    class MenuItemPriceList
+    {
+
+        public static Dictionary<string, int> MenuItems = new Dictionary<string, int>()
+                                            {
+                                                { "RegularCoffee", 80 },
+                                                { "HotCoffee", 90 },
+                                                { "ColdCoffee", 100 },
+                                                { "BlackCoffee", 120 }
+                                            };
+
+       
+        public static int SetItemPrice(string orderItem)
+        {
+            int price = 0;
+            if (orderItem == "") return price;
+
+            foreach (KeyValuePair<string, int> item in MenuItems)
+            {
+                if(orderItem == item.Key) price = item.Value;
+            }
+
+            return price;
+        }
+    }
+
+
 }
