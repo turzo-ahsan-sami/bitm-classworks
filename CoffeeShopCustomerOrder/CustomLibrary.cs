@@ -23,5 +23,19 @@ namespace CoffeeShop2
             return isNumber;
         }
 
+        public static bool HasDuplicateContacts(List<OrderDetails>customersOrders, string contact)
+        {
+            if (customersOrders.Count == 0 || contact == "") return false;
+
+            foreach (OrderDetails item in customersOrders)
+            {
+                if (item.contact == contact)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

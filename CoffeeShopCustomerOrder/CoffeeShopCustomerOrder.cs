@@ -73,7 +73,7 @@ namespace CoffeeShop2
                 if (order.contact == "") message = "Please input contact.";
                 if (order.menuItem == "") message = "Please select an item.";
                 if (order.itemQuantity == 0) message = "Please input order quantity.";
-                if (HasDuplicateContacts(order.contact)) message = "Contact already exists. Please provide a different contact.";
+                if (CustomLibrary.HasDuplicateContacts(customersOrders, order.contact)) message = "Contact already exists. Please provide a different contact.";
 
 
                 if (message != "")
@@ -123,27 +123,7 @@ namespace CoffeeShop2
                 Reset();
             }
         }
-
-
-
-        private bool HasDuplicateContacts(string contact)
-        {
-            if (customersOrders.Count == 0 || contact == "") return false;
-
-            foreach (OrderDetails item in customersOrders)
-            {
-                if (item.contact == contact)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-
-
-
+                             
     }
 
     class OrderDetails
