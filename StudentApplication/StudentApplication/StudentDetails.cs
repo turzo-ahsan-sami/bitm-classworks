@@ -60,9 +60,9 @@ namespace StudentApplication
                 return false;
             }
 
-            if (mobile.Length != 4)
+            if (mobile.Length != 11)
             {
-                ShowMessage("Mobile number should be of 4 characters!");
+                ShowMessage("Mobile number should be of 11 characters!");
                 return false;
             }
 

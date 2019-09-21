@@ -160,9 +160,9 @@
             this.groupBox1.Controls.Add(this.idRadioButton);
             this.groupBox1.Controls.Add(this.nameRadioButton);
             this.groupBox1.Controls.Add(this.searchButton);
-            this.groupBox1.Location = new System.Drawing.Point(501, 177);
+            this.groupBox1.Location = new System.Drawing.Point(433, 177);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 115);
+            this.groupBox1.Size = new System.Drawing.Size(200, 121);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
@@ -191,7 +191,7 @@
             // 
             this.displayRichTextBox.Location = new System.Drawing.Point(36, 310);
             this.displayRichTextBox.Name = "displayRichTextBox";
-            this.displayRichTextBox.Size = new System.Drawing.Size(740, 325);
+            this.displayRichTextBox.Size = new System.Drawing.Size(597, 325);
             this.displayRichTextBox.TabIndex = 2;
             this.displayRichTextBox.Text = "";
             // 
@@ -249,7 +249,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1417, 878);
+            this.ClientSize = new System.Drawing.Size(656, 652);
             this.Controls.Add(this.displayRichTextBox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.studentsGroupBox);
