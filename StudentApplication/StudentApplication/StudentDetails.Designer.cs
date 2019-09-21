@@ -43,6 +43,11 @@
             this.showAllButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
             this.displayRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.nameRadioButton = new System.Windows.Forms.RadioButton();
+            this.idRadioButton = new System.Windows.Forms.RadioButton();
+            this.mobileRadioButton = new System.Windows.Forms.RadioButton();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
             this.studentsGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -53,15 +58,17 @@
             this.studentsGroupBox.Controls.Add(this.label5);
             this.studentsGroupBox.Controls.Add(this.ageTextBox);
             this.studentsGroupBox.Controls.Add(this.label4);
+            this.studentsGroupBox.Controls.Add(this.showAllButton);
+            this.studentsGroupBox.Controls.Add(this.addButton);
             this.studentsGroupBox.Controls.Add(this.mobileTextBox);
             this.studentsGroupBox.Controls.Add(this.label3);
             this.studentsGroupBox.Controls.Add(this.nameTextBox);
             this.studentsGroupBox.Controls.Add(this.label2);
             this.studentsGroupBox.Controls.Add(this.idTextBox);
             this.studentsGroupBox.Controls.Add(this.label1);
-            this.studentsGroupBox.Location = new System.Drawing.Point(316, 71);
+            this.studentsGroupBox.Location = new System.Drawing.Point(36, 15);
             this.studentsGroupBox.Name = "studentsGroupBox";
-            this.studentsGroupBox.Size = new System.Drawing.Size(374, 250);
+            this.studentsGroupBox.Size = new System.Drawing.Size(374, 283);
             this.studentsGroupBox.TabIndex = 0;
             this.studentsGroupBox.TabStop = false;
             this.studentsGroupBox.Text = "Student Information";
@@ -148,20 +155,23 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.showAllButton);
-            this.groupBox1.Controls.Add(this.addButton);
-            this.groupBox1.Location = new System.Drawing.Point(725, 71);
+            this.groupBox1.Controls.Add(this.searchTextBox);
+            this.groupBox1.Controls.Add(this.mobileRadioButton);
+            this.groupBox1.Controls.Add(this.idRadioButton);
+            this.groupBox1.Controls.Add(this.nameRadioButton);
+            this.groupBox1.Controls.Add(this.searchButton);
+            this.groupBox1.Location = new System.Drawing.Point(501, 177);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(331, 249);
+            this.groupBox1.Size = new System.Drawing.Size(200, 115);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Controls";
+            this.groupBox1.Text = "Search";
             // 
             // showAllButton
             // 
-            this.showAllButton.Location = new System.Drawing.Point(118, 200);
+            this.showAllButton.Location = new System.Drawing.Point(257, 254);
             this.showAllButton.Name = "showAllButton";
-            this.showAllButton.Size = new System.Drawing.Size(75, 23);
+            this.showAllButton.Size = new System.Drawing.Size(56, 23);
             this.showAllButton.TabIndex = 0;
             this.showAllButton.Text = "Show All";
             this.showAllButton.UseVisualStyleBackColor = true;
@@ -169,9 +179,9 @@
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(37, 200);
+            this.addButton.Location = new System.Drawing.Point(176, 254);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(75, 23);
+            this.addButton.Size = new System.Drawing.Size(56, 23);
             this.addButton.TabIndex = 0;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
@@ -179,11 +189,61 @@
             // 
             // displayRichTextBox
             // 
-            this.displayRichTextBox.Location = new System.Drawing.Point(316, 360);
+            this.displayRichTextBox.Location = new System.Drawing.Point(36, 310);
             this.displayRichTextBox.Name = "displayRichTextBox";
-            this.displayRichTextBox.Size = new System.Drawing.Size(740, 418);
+            this.displayRichTextBox.Size = new System.Drawing.Size(740, 325);
             this.displayRichTextBox.TabIndex = 2;
             this.displayRichTextBox.Text = "";
+            // 
+            // searchButton
+            // 
+            this.searchButton.Location = new System.Drawing.Point(25, 80);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(56, 23);
+            this.searchButton.TabIndex = 0;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.SearchStudent);
+            // 
+            // nameRadioButton
+            // 
+            this.nameRadioButton.AutoSize = true;
+            this.nameRadioButton.Location = new System.Drawing.Point(65, 19);
+            this.nameRadioButton.Name = "nameRadioButton";
+            this.nameRadioButton.Size = new System.Drawing.Size(53, 17);
+            this.nameRadioButton.TabIndex = 1;
+            this.nameRadioButton.TabStop = true;
+            this.nameRadioButton.Text = "Name";
+            this.nameRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // idRadioButton
+            // 
+            this.idRadioButton.AutoSize = true;
+            this.idRadioButton.Location = new System.Drawing.Point(25, 19);
+            this.idRadioButton.Name = "idRadioButton";
+            this.idRadioButton.Size = new System.Drawing.Size(36, 17);
+            this.idRadioButton.TabIndex = 1;
+            this.idRadioButton.TabStop = true;
+            this.idRadioButton.Text = "ID";
+            this.idRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // mobileRadioButton
+            // 
+            this.mobileRadioButton.AutoSize = true;
+            this.mobileRadioButton.Location = new System.Drawing.Point(122, 19);
+            this.mobileRadioButton.Name = "mobileRadioButton";
+            this.mobileRadioButton.Size = new System.Drawing.Size(56, 17);
+            this.mobileRadioButton.TabIndex = 1;
+            this.mobileRadioButton.TabStop = true;
+            this.mobileRadioButton.Text = "Mobile";
+            this.mobileRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Location = new System.Drawing.Point(25, 48);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(152, 20);
+            this.searchTextBox.TabIndex = 2;
             // 
             // StudentDetails
             // 
@@ -198,6 +258,7 @@
             this.studentsGroupBox.ResumeLayout(false);
             this.studentsGroupBox.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -219,6 +280,11 @@
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button showAllButton;
         private System.Windows.Forms.RichTextBox displayRichTextBox;
+        private System.Windows.Forms.RadioButton mobileRadioButton;
+        private System.Windows.Forms.RadioButton idRadioButton;
+        private System.Windows.Forms.RadioButton nameRadioButton;
+        private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.TextBox searchTextBox;
     }
 }
 
