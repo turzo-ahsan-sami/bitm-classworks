@@ -36,7 +36,7 @@ namespace StudentApplication
             string message = "";
             if (newStudent.name.Length != 4) return false;
             if (newStudent.mobile.Length != 11) return false;
-            if (CustomLibrary.HasDuplicateContacts()) return false;
+            if (CustomLibrary.HasDuplicates(list: studentList)) return false;
             if (newStudent.gpa < 0 || newStudent.gpa > 4) return false;
 
             if (message.Length > 0) MessageBox.Show(message);
