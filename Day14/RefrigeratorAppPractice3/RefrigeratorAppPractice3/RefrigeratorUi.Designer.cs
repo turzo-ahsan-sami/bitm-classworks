@@ -33,7 +33,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.maxWeightTakeTextBox = new System.Windows.Forms.TextBox();
+            this.maxWeightTextBox = new System.Windows.Forms.TextBox();
             this.itemTextBox = new System.Windows.Forms.TextBox();
             this.currentWeightTextBox = new System.Windows.Forms.TextBox();
             this.weightTextBox = new System.Windows.Forms.TextBox();
@@ -87,12 +87,12 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Remaining (Weight)";
             // 
-            // maxWeightTakeTextBox
+            // maxWeightTextBox
             // 
-            this.maxWeightTakeTextBox.Location = new System.Drawing.Point(192, 32);
-            this.maxWeightTakeTextBox.Name = "maxWeightTakeTextBox";
-            this.maxWeightTakeTextBox.Size = new System.Drawing.Size(231, 20);
-            this.maxWeightTakeTextBox.TabIndex = 1;
+            this.maxWeightTextBox.Location = new System.Drawing.Point(192, 32);
+            this.maxWeightTextBox.Name = "maxWeightTextBox";
+            this.maxWeightTextBox.Size = new System.Drawing.Size(231, 20);
+            this.maxWeightTextBox.TabIndex = 1;
             // 
             // itemTextBox
             // 
@@ -153,7 +153,7 @@
             this.Controls.Add(this.weightTextBox);
             this.Controls.Add(this.currentWeightTextBox);
             this.Controls.Add(this.itemTextBox);
-            this.Controls.Add(this.maxWeightTakeTextBox);
+            this.Controls.Add(this.maxWeightTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -173,7 +173,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox maxWeightTakeTextBox;
+        private System.Windows.Forms.TextBox maxWeightTextBox;
         private System.Windows.Forms.TextBox itemTextBox;
         private System.Windows.Forms.TextBox currentWeightTextBox;
         private System.Windows.Forms.TextBox weightTextBox;

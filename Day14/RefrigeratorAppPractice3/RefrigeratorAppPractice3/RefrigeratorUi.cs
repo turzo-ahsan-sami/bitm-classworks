@@ -12,6 +12,8 @@ namespace RefrigeratorAppPractice3
 {
     public partial class RefrigeratorUi : Form
     {
+        Refrigerator aRefrigerator = new Refrigerator();
+
         public RefrigeratorUi()
         {
             InitializeComponent();
@@ -19,18 +21,37 @@ namespace RefrigeratorAppPractice3
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            int maxweight = Convert.ToInt32(maxWeightTakeTextBox.Text);
-            Refrigerator refrigeratorobj = new Refrigerator(maxweight);
-
+            int maxweight = string.IsNullOrEmpty(maxWeightTextBox.Text) ? 0 : Convert.ToInt32(maxWeightTextBox.Text);
+            aRefrigerator.MaxWeight = maxweight;
+            maxWeightTextBox.Clear();
         }
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
-            int item = Convert.ToInt32(itemTextBox.Text);
-            int itemweight = Convert.ToInt32(weightTextBox.Text);
-            Refrigerator refrigerator = new Refrigerator();
-            int current=refrigerator.Currentweight(item, itemweight);
-            currentWeightTextBox.Text = current.ToString();
+            int noOfItems = string.IsNullOrEmpty(itemTextBox.Text) ? 0 : Convert.ToInt32(itemTextBox.Text);
+            int weightOfItems = string.IsNullOrEmpty(weightTextBox.Text) ? 0 : Convert.ToInt32(weightTextBox.Text);
+
+            itemTextBox.Clear();
+            weightTextBox.Clear();
+
+            double totalWeight = noOfItems * weightOfItems;
+
+            if (!aRefrigerator.CheckValidity(totalWeight))
+            {
+                MessageBox.Show("Weight limit exceeded");
+                return;
+            }
+
+            aRefrigerator.SetWeight(totalWeight);          
+            DisplayCurrentAndRemainingWeight();
         }
+
+        private void DisplayCurrentAndRemainingWeight()
+        {
+            maxWeightTextBox.Text = aRefrigerator.MaxWeight.ToString();
+            currentWeightTextBox.Text = aRefrigerator.GetCurrentweight().ToString();
+            remainingWeightTextBox.Text = aRefrigerator.GetRemainWeight().ToString();
+        }
+
     }
 }
