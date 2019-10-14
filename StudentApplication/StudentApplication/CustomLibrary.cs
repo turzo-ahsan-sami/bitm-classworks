@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StudentApplication
 {
-    class CustomLibrary
+    internal class CustomLibrary
     {
         public static bool IsNumber(string passedValue)
         {
@@ -22,7 +20,6 @@ namespace StudentApplication
             }
             return isNumber;
         }
-                
 
         public static bool HasDuplicateID(List<StudentInformation> list, string id)
         {
@@ -36,8 +33,6 @@ namespace StudentApplication
             return list.Exists(r => r.mobile == mobile);
         }
 
-
-
         public static StudentInformation FindMaxInList(List<StudentInformation> list)
         {
             if (list.Count == 0) return null;
@@ -50,12 +45,11 @@ namespace StudentApplication
         public static StudentInformation FindMinInList(List<StudentInformation> list)
         {
             if (list.Count == 0) return null;
-            double result = 0;            
+            double result = 0;
             result = list.Min(i => i.gpa);
             var student = list.First(x => x.gpa == result);
             return student;
         }
-
 
         public static double FindAvgOfList(List<StudentInformation> list)
         {
@@ -63,12 +57,10 @@ namespace StudentApplication
             return list.Select(r => r.gpa).Average(); ;
         }
 
-
         public static double FindTotalOfList(List<StudentInformation> list)
         {
             if (list.Count == 0) return 0;
             return list.Sum(r => r.gpa);
         }
-
     }
 }

@@ -40,59 +40,64 @@ namespace StudentApplication
             mobileRadioButton.Checked = false;
         }
 
-        private void ShowMessage(string message)
+        private void ShowErrorMessage(string message)
         {
             MessageBox.Show(message);
         }
-              
 
-        private bool ValidateInputs()
+        private void DisplayOutput(string message)
         {
-            id = idTextBox.Text;
-            name = nameTextBox.Text;
-            mobile = mobileTextBox.Text;
-            age = (ageTextBox.Text == "") ? 0 : int.Parse(ageTextBox.Text);
-            gpa = (gpaTextBox.Text == "") ? 0 : double.Parse(gpaTextBox.Text);
+            displayRichTextBox.Text = message;
+        }
 
-            if (id.Length != 4)
+
+        private bool ValidateInputs(List<StudentInformation> studentList, string id, string name, string mobile, int age, double gpa)
+        {
+            string studentID = id;
+            string studentName = name;
+            string studentMobile = mobile;
+            int studentAge = age;
+            double studentGPA = gpa;
+
+            if (studentID.Length != 4)
             {
-                ShowMessage("ID should be of 4 characters!");
+                ShowErrorMessage("ID should be of 4 characters!");
                 return false;
             }
 
-            if (mobile.Length != 11)
+            if (studentName.Length == 0)
             {
-                ShowMessage("Mobile number should be of 11 characters!");
+                ShowErrorMessage("Name can not be empty!");
                 return false;
             }
 
-            if (name.Length == 0)
+            if (studentMobile.Length != 11)
             {
-                ShowMessage("Name can not be empty!");
+                ShowErrorMessage("Mobile number should be of 11 characters!");
+                return false;
+            }
+            
+            if (CustomLibrary.HasDuplicateID(list: studentList, studentID))
+            {
+                ShowErrorMessage("ID exists already!");
                 return false;
             }
 
-            if (CustomLibrary.HasDuplicateID(list: studentList, id))
+            if (CustomLibrary.HasDuplicateMobile(list: studentList, studentMobile))
             {
-                ShowMessage("ID exists already!");
+                ShowErrorMessage("Mobile exists already!");
                 return false;
             }
 
-            if (CustomLibrary.HasDuplicateMobile(list: studentList, mobile))
+            if (studentAge == 0)
             {
-                ShowMessage("Mobile exists already!");
+                ShowErrorMessage("Age can not be 0!");
                 return false;
             }
 
-            if (age == 0)
+            if (studentGPA <= 0 || studentGPA > 4)
             {
-                ShowMessage("Age can not be 0!");
-                return false;
-            }
-
-            if (gpa <= 0 || gpa > 4)
-            {
-                ShowMessage("GPA should be between 0 and 4!");
+                ShowErrorMessage("GPA should be between 0 and 4!");
                 return false;
             }
                       
@@ -101,16 +106,22 @@ namespace StudentApplication
         
         private void AddStudent(object sender, EventArgs e)
         {
-            displayRichTextBox.Text = "";
             try
             {
-                if (ValidateInputs())
+                displayRichTextBox.Text = "";
+                id = idTextBox.Text;
+                name = nameTextBox.Text;
+                mobile = mobileTextBox.Text;
+                age = (ageTextBox.Text == "") ? 0 : int.Parse(ageTextBox.Text);
+                gpa = (gpaTextBox.Text == "") ? 0 : double.Parse(gpaTextBox.Text);
+
+                if (ValidateInputs(studentList, id, name, mobile, age, gpa))
                 {
                     StudentInformation newStudent = new StudentInformation(id, name, mobile, age, gpa);
                     studentList.Add(newStudent);
                     string output = "Student Added \n\n";
                     output += StudentInformation.ShowStudent(newStudent);
-                    displayRichTextBox.Text = output;
+                    DisplayOutput(output);
                     Reset();
                 }
                 else
@@ -120,7 +131,7 @@ namespace StudentApplication
             }
             catch (Exception exception)
             {
-                ShowMessage(exception.Message);
+                ShowErrorMessage(exception.Message);
             }
         }
 
@@ -138,17 +149,17 @@ namespace StudentApplication
                         output += StudentInformation.ShowStudent(student);
                     }
                     output += StudentInformation.DisplayMaxMinAvgTotal(studentList);
-                    displayRichTextBox.Text = output;                    
+                    DisplayOutput(output);
                 }
                 else
                 {
-                    ShowMessage("Please add students first!");
+                    ShowErrorMessage("Please add students first!");
                     return;
                 }
             }
             catch (Exception exception)
             {
-                ShowMessage(exception.Message);
+                ShowErrorMessage(exception.Message);
             }
         }
 
@@ -156,27 +167,25 @@ namespace StudentApplication
         {
             List<StudentInformation> students = new List<StudentInformation>();
             string searchText = searchTextBox.Text.ToLower();
-            if (searchText == "") ShowMessage("Please enter id, name or mobile to search.");
+            if (searchText == "") ShowErrorMessage("Please enter id, name or mobile to search.");
             
             if (idRadioButton.Checked == true) students = studentList.FindAll(r => r.id.ToLower() == searchText);
             else if (nameRadioButton.Checked == true) students = studentList.FindAll(r => r.name.ToLower() == searchText);
             else if (mobileRadioButton.Checked == true) students = studentList.FindAll(r => r.mobile.ToLower() == searchText);
-            else MessageBox.Show("Please select id, name or mobile to search.");
+            else ShowErrorMessage("Please select id, name or mobile to search.");
 
-            if (students.Count == 0) ShowMessage("No student found that matches the description");
+            if (students.Count == 0) ShowErrorMessage("No student found that matches the description");
             else
             {
                 string output = "Search Result \n\n";
                 foreach (StudentInformation student in students)
                 {
                     output += StudentInformation.ShowStudent(student);
-                }                
-                displayRichTextBox.Text = output;
+                }
+                DisplayOutput(output);
             }
         }
     }
-
-
 
 
 
@@ -189,13 +198,7 @@ namespace StudentApplication
         public int age { get; set; }
         public double gpa { get; set; }
         
-
-        
-
-        public StudentInformation()
-        {
-        }
-
+                
         public StudentInformation(string id, string name, string mobile, int age, double gpa)
         {
             this.id = id;

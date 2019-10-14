@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("StudentApplication")]
+[assembly: AssemblyTitle("RefrigeratorAppPractice3")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("StudentApplication")]
+[assembly: AssemblyProduct("RefrigeratorAppPractice3")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("69b53e6d-d439-46e6-adaf-9b5f49aa68e6")]
+[assembly: Guid("a577cd85-7263-4d61-b9fb-4c24274f8a88")]
 
 // Version information for an assembly consists of the following four values:
 //

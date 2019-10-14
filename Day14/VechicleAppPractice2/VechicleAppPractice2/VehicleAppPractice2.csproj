@@ -4,15 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{69B53E6D-D439-46E6-ADAF-9B5F49AA68E6}</ProjectGuid>
+    <ProjectGuid>{8A78CF80-743A-4FB0-918E-158EB2D67A3D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>StudentApplication</RootNamespace>
-    <AssemblyName>StudentApplication</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>VechicleAppPractice2</RootNamespace>
+    <AssemblyName>VechicleAppPractice2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -23,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,7 +30,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -49,12 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomLibrary.cs" />
-    <Compile Include="StudentDetails.cs">
+    <Compile Include="Vehicle.class.cs" />
+    <Compile Include="VehicleUi.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StudentDetails.Designer.cs">
-      <DependentUpon>StudentDetails.cs</DependentUpon>
+    <Compile Include="VehicleUi.Designer.cs">
+      <DependentUpon>VehicleUi.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,10 +62,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="StudentDetails.resx">
-      <DependentUpon>StudentDetails.cs</DependentUpon>
+    <EmbeddedResource Include="VehicleUi.resx">
+      <DependentUpon>VehicleUi.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
