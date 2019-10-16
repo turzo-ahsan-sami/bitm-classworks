@@ -12,7 +12,7 @@ namespace RefrigeratorAppPractice3
 {
     public partial class RefrigeratorUi : Form
     {
-        Refrigerator aRefrigerator = new Refrigerator();
+        Refrigerator aRefrigerator;
 
         public RefrigeratorUi()
         {
@@ -22,7 +22,7 @@ namespace RefrigeratorAppPractice3
         private void SaveButton_Click(object sender, EventArgs e)
         {
             int maxweight = string.IsNullOrEmpty(maxWeightTextBox.Text) ? 0 : Convert.ToInt32(maxWeightTextBox.Text);
-            aRefrigerator.MaxWeight = maxweight;
+            aRefrigerator = new Refrigerator(maxweight);
             maxWeightTextBox.Clear();
         }
 
@@ -42,16 +42,21 @@ namespace RefrigeratorAppPractice3
                 return;
             }
 
-            aRefrigerator.SetWeight(totalWeight);          
+            aRefrigerator.SetWeight(noOfItems, weightOfItems);          
             DisplayCurrentAndRemainingWeight();
+            DisplayRefrigeratorDetails();
         }
 
         private void DisplayCurrentAndRemainingWeight()
         {
-            maxWeightTextBox.Text = aRefrigerator.MaxWeight.ToString();
+            maxWeightTextBox.Text = aRefrigerator.GetMaxWeight().ToString();
             currentWeightTextBox.Text = aRefrigerator.GetCurrentweight().ToString();
             remainingWeightTextBox.Text = aRefrigerator.GetRemainWeight().ToString();
         }
 
+        private void DisplayRefrigeratorDetails()
+        {
+            refrigeratorDetailsRichTextBox.Text = aRefrigerator.GetRefrigeratorDetails();
+        }
     }
 }

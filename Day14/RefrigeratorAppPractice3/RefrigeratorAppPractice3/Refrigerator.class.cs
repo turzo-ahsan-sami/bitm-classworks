@@ -7,26 +7,60 @@ using System.Threading.Tasks;
 namespace RefrigeratorAppPractice3
 {
     class Refrigerator
-    {        
-        public int MaxWeight { get; set; }
-        
-        private List<double> WeightList = new List<double>();
+    {
+        private int maxWeight;
 
-        public void SetWeight(double totalWeight)
-        {           
+        private List<int> noOfItemsList = new List<int>();
+        private List<double> weightPerUnitList = new List<double>();
+        private List<double> totalWeightList = new List<double>();
+
+        public Refrigerator(int maxWeight)
+        {
+            this.maxWeight = maxWeight;
+        }
+
+        public int GetMaxWeight()
+        {
+            return this.maxWeight;
+        }
+
+        public string GetRefrigeratorDetails()
+        {
+            string refrigeratorDetails = "No. of Items - Weight/Unit - Total Weight \n";
+
+            for (int i = 0; i < totalWeightList.Count(); i++)
+            {
+                refrigeratorDetails +=  noOfItemsList[i].ToString() + "          -           "
+                                        + weightPerUnitList[i].ToString() + "          -           "
+                                        + totalWeightList[i].ToString() + "\n";
+            }
+
+            refrigeratorDetails += "-------------------------------------------\n" + "Total Weight : " + GetCurrentweight();
+
+            return refrigeratorDetails;
+        }
+
+        public void SetWeight(int noOfItems, double weightPerUnit)
+        {
+            double totalWeight = noOfItems * weightPerUnit;
             if (!CheckValidity(totalWeight)) return;
-            if (totalWeight != 0) WeightList.Add(totalWeight);
+            if (totalWeight != 0)
+            {
+                this.noOfItemsList.Add(noOfItems);                
+                this.weightPerUnitList.Add(weightPerUnit);
+                this.totalWeightList.Add(totalWeight);
+            }                
         }
 
         public double GetCurrentweight()
         {
-            double currentWeight = WeightList.Count > 0 ? WeightList.Sum() : 0.0;
+            double currentWeight = totalWeightList.Count > 0 ? totalWeightList.Sum() : 0.0;
             return currentWeight;
         }
 
         public double GetRemainWeight()
         {
-            double remainingWeight = MaxWeight - GetCurrentweight();
+            double remainingWeight = this.maxWeight - GetCurrentweight();
             return remainingWeight;
         }
 

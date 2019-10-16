@@ -40,6 +40,7 @@
             this.remainingWeightTextBox = new System.Windows.Forms.TextBox();
             this.SaveButton = new System.Windows.Forms.Button();
             this.EnterButton = new System.Windows.Forms.Button();
+            this.refrigeratorDetailsRichTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -142,11 +143,20 @@
             this.EnterButton.UseVisualStyleBackColor = true;
             this.EnterButton.Click += new System.EventHandler(this.EnterButton_Click);
             // 
+            // refrigeratorDetailsRichTextBox
+            // 
+            this.refrigeratorDetailsRichTextBox.Location = new System.Drawing.Point(51, 151);
+            this.refrigeratorDetailsRichTextBox.Name = "refrigeratorDetailsRichTextBox";
+            this.refrigeratorDetailsRichTextBox.Size = new System.Drawing.Size(453, 157);
+            this.refrigeratorDetailsRichTextBox.TabIndex = 3;
+            this.refrigeratorDetailsRichTextBox.Text = "";
+            // 
             // RefrigeratorUi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(540, 152);
+            this.ClientSize = new System.Drawing.Size(549, 318);
+            this.Controls.Add(this.refrigeratorDetailsRichTextBox);
             this.Controls.Add(this.EnterButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.remainingWeightTextBox);
@@ -180,6 +190,7 @@
         private System.Windows.Forms.TextBox remainingWeightTextBox;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Button EnterButton;
+        private System.Windows.Forms.RichTextBox refrigeratorDetailsRichTextBox;
     }
 }
 
